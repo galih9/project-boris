@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://c33joy3d74h0i"]
+
+[ext_resource type="Script" uid="uid://dateh3p2ar6mo" path="res://scripts/player.gd" id="1_wc61t"]
+[ext_resource type="PackedScene" uid="uid://pausemenu123" path="res://scenes/pause_menu.tscn" id="2_pause"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mfwyp"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_ptnyc"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ojrtw"]
+albedo_color = Color(1, 1, 0, 1)
+
+[node name="player" type="CharacterBody3D"]
+script = ExtResource("1_wc61t")
+
+[node name="head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.778361, -0.264104)
+
+[node name="camera" type="Camera3D" parent="head"]
+
+[node name="flashlight" type="SpotLight3D" parent="head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.610217)
+light_color = Color(1, 0.980392, 0.764706, 1)
+spot_range = 10.0
+spot_angle = 70.0
+
+[node name="collision" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_mfwyp")
+
+[node name="mesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_ptnyc")
+surface_material_override/0 = SubResource("StandardMaterial3D_ojrtw")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("2_pause")]
