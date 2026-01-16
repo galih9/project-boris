@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://cg1v8340g1tdc"]
+
+[ext_resource type="PackedScene" uid="uid://by5muvlto7cen" path="res://assets/model/latest_tileset.glb" id="1_mwrpu"]
+
+[node name="latest_tileset" instance=ExtResource("1_mwrpu")]

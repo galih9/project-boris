@@ -29,6 +29,7 @@ fog_density = 0.05
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1565523, 0)
 
 [node name="NoirPostProcess" parent="." instance=ExtResource("4_noir")]
+visible = false
 
 [node name="tile_map" type="GridMap" parent="."]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
