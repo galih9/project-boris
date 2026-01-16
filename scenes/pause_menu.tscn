@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://pausemenu123"]
+[gd_scene load_steps=3 format=3 uid="uid://pausemenu123"]
 
-[ext_resource type="Script" path="res://scripts/pause_menu.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://bxr7acpkn87ws" path="res://scripts/pause_menu.gd" id="1_script"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_n87rw"]
+font_size = 9
 
 [node name="PauseMenu" type="Control"]
 process_mode = 3
@@ -10,9 +13,16 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("1_script")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ActivePause" type="Control" parent="."]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_right = 317.0
+offset_bottom = 240.0
+
+[node name="ColorRect" type="ColorRect" parent="ActivePause"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -21,35 +31,52 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.352941)
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
+[node name="CenterContainer" type="CenterContainer" parent="ActivePause"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = 3.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ActivePause/CenterContainer"]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="ActivePause/CenterContainer/VBoxContainer"]
 layout_mode = 2
 text = "PAUSED"
 horizontal_alignment = 1
 
-[node name="ResumeButton" type="Button" parent="CenterContainer/VBoxContainer"]
+[node name="ResumeButton" type="Button" parent="ActivePause/CenterContainer/VBoxContainer"]
 layout_mode = 2
 text = "Resume"
 
-[node name="RestartButton" type="Button" parent="CenterContainer/VBoxContainer"]
+[node name="RestartButton" type="Button" parent="ActivePause/CenterContainer/VBoxContainer"]
 layout_mode = 2
 text = "Restart"
 
-[node name="QuitButton" type="Button" parent="CenterContainer/VBoxContainer"]
+[node name="QuitButton" type="Button" parent="ActivePause/CenterContainer/VBoxContainer"]
 layout_mode = 2
 text = "Quit"
 
-[connection signal="pressed" from="CenterContainer/VBoxContainer/ResumeButton" to="." method="_on_resume_pressed"]
-[connection signal="pressed" from="CenterContainer/VBoxContainer/RestartButton" to="." method="_on_restart_pressed"]
-[connection signal="pressed" from="CenterContainer/VBoxContainer/QuitButton" to="." method="_on_quit_pressed"]
+[node name="HUD" type="Control" parent="."]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_right = 317.0
+offset_bottom = 240.0
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="HUD"]
+layout_mode = 0
+offset_left = 164.0
+offset_top = 221.0
+offset_right = 317.0
+offset_bottom = 234.0
+text = "Right Click To Switch the flashlight"
+label_settings = SubResource("LabelSettings_n87rw")
+
+[connection signal="pressed" from="ActivePause/CenterContainer/VBoxContainer/ResumeButton" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="ActivePause/CenterContainer/VBoxContainer/RestartButton" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="ActivePause/CenterContainer/VBoxContainer/QuitButton" to="." method="_on_quit_pressed"]

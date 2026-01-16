@@ -1,15 +1,22 @@
 extends Control
 
+
+@onready var pausemenu = %ActivePause
+@onready var hud = %HUD
+
 func _ready():
-	visible = false
+	hud.visible = true
+	pausemenu.visible = false
 
 func resume():
 	get_tree().paused = false
-	visible = false
+	pausemenu.visible = false
+	hud.visible = true
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func pause():
-	visible = true
+	pausemenu.visible = true
+	hud.visible = false
 	get_tree().paused = true
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
@@ -25,7 +32,7 @@ func _on_restart_pressed():
 
 func _unhandled_input(event):
 	if event.is_action_pressed("ui_cancel"):
-		if visible:
+		if pausemenu.visible:
 			resume()
 		else:
 			pause()

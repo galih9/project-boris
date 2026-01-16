@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://7hokun6qqjp"]
+
+[ext_resource type="Script" uid="uid://dgkpiyvbgfxd7" path="res://scripts/hud.gd" id="1_qpvh6"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_jvwwx"]
+font_size = 9
+
+[node name="Hud" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qpvh6")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 164.0
+offset_top = 221.0
+offset_right = 317.0
+offset_bottom = 234.0
+text = "Right Click To Switch the flashlight"
+label_settings = SubResource("LabelSettings_jvwwx")

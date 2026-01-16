@@ -9,17 +9,27 @@ var gravity = 9.8
 
 @onready var head = $head
 @onready var camera = $head/camera
-
+@onready var flashlight = $head/flashlight
+@onready var flashlight_model = $head/flashlight_model
 
 func _ready():
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _unhandled_input(event):
-	if event is InputEventMouseMotion:
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+
+	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		head.rotate_y(-event.relative.x * SENSITIVITY)
 		camera.rotate_x(-event.relative.y * SENSITIVITY)
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-40), deg_to_rad(60))
+		
+		# Flashlight vertical movement
+		# This code does not fucking work
+		#var flashlight_limit = 0.5
+		#flashlight.rotation.x = camera.rotation.x * flashlight_limit
+		#flashlight_model.rotation.x = flashlight_model_start_rot_x + (camera.rotation.x * flashlight_limit)
 
 
 func _physics_process(delta):
@@ -27,6 +37,9 @@ func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 
+	# handle activate flash
+	if Input.is_action_just_pressed("secondary_action") and is_on_floor():
+		flashlight.visible = !flashlight.visible
 	# Handle jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
