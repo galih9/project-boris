@@ -19,15 +19,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.778361, -0.264104)
 
 [node name="camera" type="Camera3D" parent="head"]
 
+[node name="flashlight_model" parent="head/camera" instance=ExtResource("2_qhqgy")]
+transform = Transform3D(-1.3107002e-08, -4.100722e-10, 0.29999995, -0.009381358, 0.29985324, 0, -0.29985327, -0.0093813585, -1.3113416e-08, 0.25909412, -0.7084855, -0.70320624)
+
 [node name="flashlight" type="SpotLight3D" parent="head"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25849336, -0.33819306, -1.4973859)
 light_color = Color(1, 0.980392, 0.764706, 1)
 light_energy = 0.333
 spot_range = 10.0
 spot_angle = 25.571556
-
-[node name="flashlight_model" parent="head" instance=ExtResource("2_qhqgy")]
-transform = Transform3D(-1.3107002e-08, -4.100722e-10, 0.29999995, -0.009381358, 0.29985324, 0, -0.29985327, -0.0093813585, -1.3113416e-08, 0.25909412, -0.7084855, -0.70320624)
 
 [node name="collision" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_mfwyp")

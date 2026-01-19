@@ -24,13 +24,6 @@ func _unhandled_input(event):
 		head.rotate_y(-event.relative.x * SENSITIVITY)
 		camera.rotate_x(-event.relative.y * SENSITIVITY)
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-40), deg_to_rad(60))
-		
-		# Flashlight vertical movement
-		# This code does not fucking work
-		#var flashlight_limit = 0.5
-		#flashlight.rotation.x = camera.rotation.x * flashlight_limit
-		#flashlight_model.rotation.x = flashlight_model_start_rot_x + (camera.rotation.x * flashlight_limit)
-
 
 func _physics_process(delta):
 	# Add the gravity.
